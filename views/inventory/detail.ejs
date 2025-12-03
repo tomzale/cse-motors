@@ -1,0 +1,57 @@
+<%- include('../partials/head') %>
+
+<body>
+  <%- include('../partials/header') %>
+  <%- include('../partials/nav') %>
+
+  <main class="container">
+    <h1><%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
+    
+    <div class="vehicle-detail-container">
+      <div class="vehicle-image-section">
+        <img src="<%= vehicle.inv_image %>" 
+             alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %>" 
+             class="vehicle-detail-image">
+      </div>
+      
+      <div class="vehicle-info-section">
+        <div class="price-tag">
+          <span class="price-label">Price:</span>
+          <span class="price-amount">$<%= utilities.formatPrice(vehicle.inv_price) %></span>
+        </div>
+        
+        <div class="specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Mileage:</span>
+            <span class="spec-value"><%= utilities.formatMiles(vehicle.inv_miles) %> miles</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Color:</span>
+            <span class="spec-value"><%= vehicle.inv_color %></span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Year:</span>
+            <span class="spec-value"><%= vehicle.inv_year %></span>
+          </div>
+        </div>
+        
+        <div class="vehicle-description">
+          <h3>Vehicle Description</h3>
+          <p><%= vehicle.inv_description %></p>
+        </div>
+        
+        <div class="action-buttons">
+          <a href="/contact" class="btn btn-primary">Contact for Details</a>
+          <a href="/test-drive" class="btn btn-secondary">Schedule Test Drive</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="back-link">
+      <a href="/inventory">&larr; Back to Inventory</a>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

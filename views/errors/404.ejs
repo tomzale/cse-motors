@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - CSE Motors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css" media="screen">
+    <style>
+        .error-container {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 3rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            color: #1a365d;
+            line-height: 1;
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: #212529;
+            margin: 1rem 0;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin: 1.5rem 0 2.5rem;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .error-btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .error-btn-primary {
+            background: #2d6a4f;
+            color: white;
+        }
+        
+        .error-btn-primary:hover {
+            background: #1f4d36;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+        }
+        
+        .error-btn-secondary {
+            background: transparent;
+            color: #2d6a4f;
+            border-color: #2d6a4f;
+        }
+        
+        .error-btn-secondary:hover {
+            background: #2d6a4f;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #e63946;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+            }
+            
+            .error-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 4rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+            
+            .error-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <%- include('../partials/nav') %>
+    
+    <main class="error-container">
+        <div class="error-content">
+            <div class="error-icon">🔍</div>
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title"><%= title %></h2>
+            <p class="error-message"><%= message %></p>
+            <p class="error-message">The page you're looking for might have been moved, deleted, or never existed.</p>
+            
+            <div class="error-actions">
+                <a href="/" class="error-btn error-btn-primary">
+                    ← Return to Home
+                </a>
+                <a href="/inventory" class="error-btn error-btn-secondary">
+                    Browse Inventory
+                </a>
+                <a href="/contact" class="error-btn error-btn-secondary">
+                    Contact Support
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #dee2e6;">
+                <p style="font-size: 0.9rem; color: #6c757d;">
+                    <strong>Troubleshooting tips:</strong><br>
+                    • Check the URL for typos<br>
+                    • Use the navigation menu above<br>
+                    • Try our search feature (coming soon)
+                </p>
+            </div>
+        </div>
+    </main>
+    
+    <%- include('../partials/footer') %>
+    
+    <script>
+        // Add some interactive feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.error-btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Animate the error code
+            const errorCode = document.querySelector('.error-code');
+            errorCode.style.opacity = '0';
+            errorCode.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                errorCode.style.transition = 'all 0.8s ease';
+                errorCode.style.opacity = '0.9';
+                errorCode.style.transform = 'translateY(0)';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
